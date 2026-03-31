@@ -21,21 +21,19 @@ public class filterchain {
 	SecurityFilterChain secfilterchain(HttpSecurity http) throws Exception {
 			http
 				.csrf(csrf-> csrf.disable())
+			       
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers("/h2-console/**").permitAll()
 						.requestMatchers("/api/public").permitAll()
 						.anyRequest().authenticated())
 
 			.httpBasic(htpb ->{})
+			
 			.headers(head->head.frameOptions(frame->frame.disable()));
 			
 		return http.build();
 	}
 	
-	@Bean
-	UserDetailsService ud() {
-		return new userService();
-	}
 	
 	@Bean
 	PasswordEncoder pencode() {

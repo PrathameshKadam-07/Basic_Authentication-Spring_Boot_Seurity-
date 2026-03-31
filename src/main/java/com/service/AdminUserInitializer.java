@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdminUserInitializer{
 
-
 	@Bean
 	public CommandLineRunner createAdminUser(userRepo ur,PasswordEncoder pe) {
 		return (args -> {
@@ -18,9 +17,8 @@ public class AdminUserInitializer{
 			{
 				UserBean admin = new UserBean();
 				admin.setUsername("admin");
-				admin.setPassword(pe.encode("admin"));
+				admin.setPassword(pe.encode("admin123"));
 				admin.setRoles("ROLE_ADMIN");
-				
 				
 				ur.save(admin);
 				System.out.println("Defalut Admin user Created");
