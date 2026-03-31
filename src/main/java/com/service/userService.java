@@ -13,11 +13,11 @@ import com.repository.userRepo;
 public class userService implements UserDetailsService {
 
 	@Autowired
-	userRepo userRepo;
+	userRepo userRepo; 
 	
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserBean ub = userRepo.findbyusername(username).orElseThrow(() -> new UsernameNotFoundException("Username Not Found"));
+	public UserDetails loadUserByUsername(String username){
+		UserBean ub = userRepo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username Not Found"));
 		
 		return ub;
 	}

@@ -1,0 +1,30 @@
+package com.service;
+
+import com.entity.UserBean;
+import com.repository.userRepo;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+
+@Component
+public class AdminUserInitializer{
+
+
+	@Bean
+	public CommandLineRunner createAdminUser(userRepo ur,PasswordEncoder pe) {
+		return (args -> {
+			if(ur.findByUsername("admin").isEmpty()) 
+			{
+				UserBean admin = new UserBean();
+				admin.setUsername("admin");
+				admin.setPassword(pe.encode("admin"));
+				admin.setRoles("ROLE_ADMIN");
+				
+				
+				ur.save(admin);
+				System.out.println("Defalut Admin user Created");
+			}
+		});
+	}
+}

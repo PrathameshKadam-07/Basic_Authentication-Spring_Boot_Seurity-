@@ -13,75 +13,71 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class UserBean implements UserDetails{
+public class UserBean implements UserDetails {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	
-	private String username;
-	private String password;
-	private String roles;
-	
-	public UserBean() {
-	}
-	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return username;
-	}
-	public void setName(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getRoles() {
-		return roles;
-	}
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	public String getUsername() {
-		return username;
-	}
+    private String username;
+    private String password;
+    private String roles;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public UserBean() {}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority(roles));
-	}
+    public long getId() {
+        return id;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return UserDetails.super.isAccountNonExpired();
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return UserDetails.super.isAccountNonLocked();
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return UserDetails.super.isCredentialsNonExpired();
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return UserDetails.super.isEnabled();
-	}
-	
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(roles));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
+

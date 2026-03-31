@@ -9,5 +9,5 @@ import com.entity.UserBean;
 
 @Repository
 public interface userRepo extends JpaRepository<UserBean,Long>{
-	Optional<UserBean> findbyusername(String username);
+	Optional<UserBean> findByUsername(String username);
 }
